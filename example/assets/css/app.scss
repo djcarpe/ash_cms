@@ -1,0 +1,88 @@
+/* AshCms Demo App Styles */
+
+/* Import AshCms styles */
+@import "../../priv/static/ash_cms.css";
+
+/* Demo-specific styles */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.ash-cms-demo-header {
+  background: #1a1a2e;
+  color: white;
+  padding: 0 32px;
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+.ash-cms-demo-logo {
+  color: white;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+
+.ash-cms-demo-nav-links {
+  display: flex;
+  gap: 24px;
+
+  a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9375rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.ash-cms-demo-main {
+  min-height: calc(100vh - 56px);
+}
+
+/* Flash messages */
+.flash {
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  min-width: 280px;
+
+  p { margin: 0; }
+
+  button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 1rem;
+    padding: 2px 4px;
+    &:hover { opacity: 1; }
+  }
+}
+
+.flash-info {
+  background: #dbeafe;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.flash-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}

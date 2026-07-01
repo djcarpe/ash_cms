@@ -1,0 +1,1 @@
+{application,uuid,[{modules,['Elixir.UUID']},{optional_applications,[]},{applications,[kernel,stdlib,elixir]},{description,[85,85,73,68,32,103,101,110,101,114,97,116,111,114,32,97,110,100,32,117,116,105,108,105,116,105,101,115,32,102,111,114,32,69,108,105,120,105,114,46,10]},{registered,[]},{vsn,[49,46,49,46,56]}]}.

@@ -1,0 +1,1 @@
+{application,castore,[{modules,['Elixir.CAStore']},{optional_applications,[]},{applications,[kernel,stdlib,elixir,logger]},{description,[85,112,45,116,111,45,100,97,116,101,32,67,65,32,99,101,114,116,105,102,105,99,97,116,101,32,115,116,111,114,101,46]},{registered,[]},{vsn,[49,46,48,46,49,57]}]}.
