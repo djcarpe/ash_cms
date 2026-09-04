@@ -120,6 +120,7 @@ defmodule AshCms.Resource.PageAttributes do
         end
 
         update :publish do
+          require_atomic? false
           accept []
           change set_attribute(:published, true)
           change set_attribute(:published_at, &DateTime.utc_now/0)
@@ -131,6 +132,7 @@ defmodule AshCms.Resource.PageAttributes do
         end
 
         update :unpublish do
+          require_atomic? false
           accept []
           change set_attribute(:published, false)
           change after_action(fn changeset, record, _ctx ->
@@ -141,6 +143,7 @@ defmodule AshCms.Resource.PageAttributes do
         end
 
         update :update_content do
+          require_atomic? false
           description "Update the visual blocks content"
           accept [:content]
 
@@ -152,6 +155,7 @@ defmodule AshCms.Resource.PageAttributes do
         end
 
         update :update_template do
+          require_atomic? false
           description "Update the raw HEEx template"
           accept [:template, :editor_mode]
 

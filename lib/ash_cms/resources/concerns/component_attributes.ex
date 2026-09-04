@@ -101,6 +101,7 @@ defmodule AshCms.Resource.ComponentAttributes do
         end
 
         update :update do
+          require_atomic? false
           primary? true
           accept [:name, :description, :icon, :category, :template,
                   :props_schema, :default_props, :preview_thumbnail]
