@@ -73,8 +73,14 @@ defmodule AshCms.PageServer do
   end
 
   @doc "Find the PID of an existing page server, if any."
-  def find_server(%{site: site, slug: slug}) when not is_nil(site) do
-    case AshCms.Registry.lookup_by_slug(site.slug, slug) do
+  # Matches on the site actually having a slug rather than guarding on
+  # `not is_nil(site)`. An unloaded relationship is `%Ash.NotLoaded{}`, which
+  # is not nil, so the nil guard sent it here and `site.slug` raised KeyError -
+  # making the loading clause below unreachable in exactly the case it exists
+  # for. `stop/1` hits this, because unlike `start_or_update/1` it is handed
+  # the record straight from the action without a reload.
+  def find_server(%{site: %{slug: site_slug}, slug: slug}) do
+    case AshCms.Registry.lookup_by_slug(site_slug, slug) do
       {pid, _meta} -> pid
       nil -> nil
     end
@@ -93,7 +99,9 @@ defmodule AshCms.PageServer do
   # ── GenServer callbacks ──────────────────────────────────────────────────────
 
   @impl true
-  def init(%{site: site, slug: _slug} = page) when not is_nil(site) do
+  # Same reasoning as `find_server/1`: match on a loaded site, so an unloaded
+  # one falls through to the clause that loads it.
+  def init(%{site: %{slug: _} = site, slug: _slug} = page) do
     # Subscribe to PubSub updates for this page
     pubsub = AshCms.pubsub_server()
     Phoenix.PubSub.subscribe(pubsub, AshCms.page_topic(page.id))
