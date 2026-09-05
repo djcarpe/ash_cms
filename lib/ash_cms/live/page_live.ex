@@ -49,6 +49,13 @@ defmodule AshCms.Live.PageLive do
     page_id = params["page_id"]
     site_id = params["site_id"]
 
+    # The host comes from the request URI, which is always present here and
+    # always correct. It used to come from `get_connect_info(:peer_data)` via
+    # `get_host/1`, whose every clause returned nil - so the host silently fell
+    # back to "localhost" and `lookup_by_domain/2` could never match a site,
+    # making domain-based routing dead code.
+    socket = assign(socket, :host, host_from_uri(uri) || socket.assigns.host)
+
     socket =
       if socket.assigns.live_action == :preview && page_id do
         load_preview(socket, site_id, page_id)
@@ -212,7 +219,16 @@ defmodule AshCms.Live.PageLive do
   defp split_site_page([slug]), do: {"default", slug}
   defp split_site_page([]), do: {"default", "home"}
 
-  defp get_host(nil), do: nil
-  defp get_host(%{address: addr}) when is_tuple(addr), do: nil
+  defp host_from_uri(uri) when is_binary(uri) do
+    case URI.parse(uri) do
+      %URI{host: host} when is_binary(host) and host != "" -> host
+      _ -> nil
+    end
+  end
+
+  defp host_from_uri(_), do: nil
+
+  # `mount/3` runs before `handle_params/3` and has no URI, so it seeds a
+  # placeholder that `handle_params/3` then replaces with the real host.
   defp get_host(_), do: nil
 end
