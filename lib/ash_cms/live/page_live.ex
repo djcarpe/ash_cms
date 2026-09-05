@@ -148,7 +148,7 @@ defmodule AshCms.Live.PageLive do
 
           case AshCms.Registry.lookup_by_slug(site_slug, page_slug) do
             {pid, meta} -> {:found, pid, meta}
-            nil -> {:not_found}
+            nil -> lookup_site_root(path_parts)
           end
       end
 
@@ -214,6 +214,22 @@ defmodule AshCms.Live.PageLive do
     |> assign(:site, site)
     |> assign(:rendered_html, html)
   end
+
+  # A single-segment path is ambiguous: "/about" usually means the page
+  # `about` on the default site, but "/marketing" is just as likely to mean
+  # the root of the site `marketing`. The page reading wins, because it is the
+  # older behaviour and the common case; this is the fallback for the other
+  # one, tried only once that has missed.
+  defp lookup_site_root([site_slug]) do
+    Enum.find_value(["home", "index"], {:not_found}, fn root ->
+      case AshCms.Registry.lookup_by_slug(site_slug, root) do
+        {pid, meta} -> {:found, pid, meta}
+        nil -> nil
+      end
+    end)
+  end
+
+  defp lookup_site_root(_path_parts), do: {:not_found}
 
   defp split_site_page([site_slug | rest]) when rest != [], do: {site_slug, Enum.join(rest, "/")}
   defp split_site_page([slug]), do: {"default", slug}
