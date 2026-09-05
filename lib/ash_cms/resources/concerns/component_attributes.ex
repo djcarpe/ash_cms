@@ -103,8 +103,8 @@ defmodule AshCms.Resource.ComponentAttributes do
         update :update do
           require_atomic? false
           primary? true
-          accept [:name, :description, :icon, :category, :template,
-                  :props_schema, :default_props, :preview_thumbnail]
+          accept [:name, :slug, :description, :icon, :category, :template,
+                  :props_schema, :default_props, :preview_thumbnail, :site_id]
 
           change after_action(fn _changeset, record, _ctx ->
             AshCms.broadcast_component_update(record)

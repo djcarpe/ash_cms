@@ -91,7 +91,7 @@ defmodule AshCms.Resource.SiteAttributes do
         update :update do
           require_atomic? false
           primary? true
-          accept [:name, :domain, :description, :css_url, :js_url,
+          accept [:name, :slug, :domain, :description, :css_url, :js_url,
                   :custom_css, :custom_js, :meta]
 
           change AshCms.Changes.NormalizeDomain

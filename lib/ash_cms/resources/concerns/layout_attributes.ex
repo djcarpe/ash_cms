@@ -74,7 +74,7 @@ defmodule AshCms.Resource.LayoutAttributes do
 
         update :update do
           primary? true
-          accept [:name, :description, :template, :is_default]
+          accept [:name, :slug, :description, :template, :is_default, :site_id]
         end
 
         read :for_site do

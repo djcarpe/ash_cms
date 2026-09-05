@@ -116,7 +116,7 @@ defmodule AshCms.Resource.PageAttributes do
           primary? true
           accept [:title, :slug, :description, :content, :template, :editor_mode,
                   :meta_title, :meta_description, :og_image_url, :custom_css,
-                  :custom_js, :sort_order, :layout_id]
+                  :custom_js, :sort_order, :layout_id, :site_id]
         end
 
         update :publish do
