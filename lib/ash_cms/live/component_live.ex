@@ -28,14 +28,14 @@ defmodule AshCms.Live.ComponentLive do
      |> assign(:component, component)
      |> assign(:action, action)
      |> assign(:preview_html, "")
-     |> assign(:template_input, component[:template] || default_template())}
+     |> assign(:template_input, Map.get(component, :template) || default_template())}
   end
 
   @impl true
   def handle_event("preview_template", %{"template" => template}, socket) do
     preview =
       EEx.eval_string(template, assigns: %{
-        props: (socket.assigns.component[:default_props] || %{}),
+        props: (Map.get(socket.assigns.component, :default_props) || %{}),
         site: socket.assigns.site
       })
 
@@ -91,13 +91,13 @@ defmodule AshCms.Live.ComponentLive do
         <form phx-submit="save" style="width: 280px; padding: 20px; border-right: 1px solid #e2e8f0; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0;">
           <div>
             <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Name</label>
-            <input type="text" name="component[name]" value={@component[:name] || ""} required
+            <input type="text" name="component[name]" value={Map.get(@component, :name) || ""} required
                    style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
           </div>
 
           <div>
             <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Slug</label>
-            <input type="text" name="component[slug]" value={@component[:slug] || ""} placeholder="my_component"
+            <input type="text" name="component[slug]" value={Map.get(@component, :slug) || ""} placeholder="my_component"
                    style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
           </div>
 
@@ -116,7 +116,7 @@ defmodule AshCms.Live.ComponentLive do
           <div>
             <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Description</label>
             <textarea name="component[description]" rows="2"
-                      style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;"><%= @component[:description] || "" %></textarea>
+                      style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;"><%= Map.get(@component, :description) || "" %></textarea>
           </div>
 
           <button type="submit" style="padding: 9px 16px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">

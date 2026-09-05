@@ -110,14 +110,14 @@ defmodule AshCms.Live.EditorLive do
      |> assign(:selected_block_id, nil)
      |> assign(:components, components)
      |> assign(:layouts, layouts)
-     |> assign(:code_content, page[:template] || "")
+     |> assign(:code_content, Map.get(page, :template) || "")
      |> assign(:preview_html, "")
      |> assign(:saved, false)
      |> assign(:saving, false)
      |> assign(:show_media_picker, false)
      |> assign(:media_picker_target, nil)
-     |> assign(:title_input, page[:title] || "New Page")
-     |> assign(:slug_input, page[:slug] || "")
+     |> assign(:title_input, Map.get(page, :title) || "New Page")
+     |> assign(:slug_input, Map.get(page, :slug) || "")
      |> assign(:page_errors, %{})
      |> update_preview()}
   end
@@ -299,7 +299,7 @@ defmodule AshCms.Live.EditorLive do
 
           socket
           |> assign(:mode, :code)
-          |> assign(:code_content, socket.assigns.page[:template] || html)
+          |> assign(:code_content, Map.get(socket.assigns.page, :template) || html)
 
         :visual ->
           assign(socket, :mode, :visual)
@@ -498,7 +498,7 @@ defmodule AshCms.Live.EditorLive do
             <%= if @saving, do: "Saving…", else: "Save" %>
           </button>
 
-          <%= if @page[:published] do %>
+          <%= if Map.get(@page, :published) do %>
             <button class="ash-cms-btn-warning" phx-click="unpublish">Unpublish</button>
           <% else %>
             <button class="ash-cms-btn-primary" phx-click="publish">Publish</button>

@@ -23,7 +23,7 @@ defmodule AshCms.Live.LayoutLive do
      |> assign(:site_id, site_id)
      |> assign(:layout, layout)
      |> assign(:action, action)
-     |> assign(:template_input, layout[:template] || default_template())}
+     |> assign(:template_input, Map.get(layout, :template) || default_template())}
   end
 
   @impl true
@@ -74,18 +74,18 @@ defmodule AshCms.Live.LayoutLive do
         <form id="layout-form" phx-submit="save" style="width: 240px; padding: 16px; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
           <div>
             <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Name</label>
-            <input type="text" name="layout[name]" value={@layout[:name] || ""} required
+            <input type="text" name="layout[name]" value={Map.get(@layout, :name) || ""} required
                    style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
           </div>
           <div>
             <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Slug</label>
-            <input type="text" name="layout[slug]" value={@layout[:slug] || ""}
+            <input type="text" name="layout[slug]" value={Map.get(@layout, :slug) || ""}
                    style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
           </div>
           <div>
             <label style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem;">
               <input type="checkbox" name="layout[is_default]" value="true"
-                     checked={@layout[:is_default] == true} />
+                     checked={Map.get(@layout, :is_default) == true} />
               Default layout for new pages
             </label>
           </div>
