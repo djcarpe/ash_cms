@@ -36,7 +36,7 @@ defmodule AshCms.Live.SiteListLive do
             <%= for site <- @sites do %>
               <tr class="ash-cms-table-row">
                 <td><strong><%= site.name %></strong></td>
-                <td style="font-family: monospace; color: #64748b;"><%= site.slug %></td>
+                <td style="font-family: monospace; color: var(--ash-cms-text-muted);"><%= site.slug %></td>
                 <td><%= site.domain || "—" %></td>
                 <td><%= length(site.pages || []) %></td>
                 <td style="display: flex; gap: 4px;">

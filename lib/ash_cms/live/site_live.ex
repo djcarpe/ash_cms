@@ -56,44 +56,44 @@ defmodule AshCms.Live.SiteLive do
         <div>
           <label>Site Name *</label>
           <input type="text" name="site[name]" value={Map.get(@site, :name) || ""} required
-                 style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;" />
+                 style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;" />
           <%= if @errors[:name], do: ~H"<p style='color: red; font-size: 0.875rem;'>{@errors[:name]}</p>" %>
         </div>
 
         <div>
           <label>Slug * (URL-safe identifier)</label>
           <input type="text" name="site[slug]" value={Map.get(@site, :slug) || ""} placeholder="my-site"
-                 style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;" />
+                 style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;" />
         </div>
 
         <div>
           <label>Domain (optional, e.g. mysite.com)</label>
           <input type="text" name="site[domain]" value={Map.get(@site, :domain) || ""}
-                 style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;" />
+                 style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;" />
         </div>
 
         <div>
           <label>Description</label>
           <textarea name="site[description]" rows="3"
-                    style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;"><%= Map.get(@site, :description) || "" %></textarea>
+                    style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;"><%= Map.get(@site, :description) || "" %></textarea>
         </div>
 
         <div>
           <label>CSS URL (optional)</label>
           <input type="text" name="site[css_url]" value={Map.get(@site, :css_url) || ""} placeholder="/assets/site.css"
-                 style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;" />
+                 style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;" />
         </div>
 
         <div>
           <label>JS URL (optional)</label>
           <input type="text" name="site[js_url]" value={Map.get(@site, :js_url) || ""} placeholder="/assets/site.js"
-                 style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px;" />
+                 style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px;" />
         </div>
 
         <div>
           <label>Custom CSS (optional, injected on every page)</label>
           <textarea name="site[custom_css]" rows="5"
-                    style="display: block; width: 100%; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; font-family: monospace;"><%= Map.get(@site, :custom_css) || "" %></textarea>
+                    style="display: block; width: 100%; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px; font-family: monospace;"><%= Map.get(@site, :custom_css) || "" %></textarea>
         </div>
 
         <div style="display: flex; gap: 12px;">

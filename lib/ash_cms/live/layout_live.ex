@@ -58,29 +58,29 @@ defmodule AshCms.Live.LayoutLive do
   def render(assigns) do
     ~H"""
     <div style="display: flex; flex-direction: column; height: 100vh;">
-      <div style="padding: 12px 24px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 16px; background: white;">
+      <div style="padding: 12px 24px; border-bottom: 1px solid var(--ash-cms-border); display: flex; align-items: center; gap: 16px; background: var(--ash-cms-bg);">
         <a href={"/cms/sites/#{@site_id}/layouts"}>← Layouts</a>
         <h1 style="margin: 0; font-size: 1.125rem;">
           <%= if @action == :new, do: "New Layout", else: "Edit Layout" %>
         </h1>
         <button phx-click="save" phx-value-layout={Jason.encode!(%{})}
-                style="margin-left: auto; padding: 8px 18px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"
+                style="margin-left: auto; padding: 8px 18px; background: var(--ash-cms-primary); color: var(--ash-cms-on-accent); border: none; border-radius: 6px; cursor: pointer; font-weight: 600;"
                 onclick="document.getElementById('layout-form-submit').click()">
           Save Layout
         </button>
       </div>
 
       <div style="display: flex; flex: 1; overflow: hidden;">
-        <form id="layout-form" phx-submit="save" style="width: 240px; padding: 16px; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
+        <form id="layout-form" phx-submit="save" style="width: 240px; padding: 16px; border-right: 1px solid var(--ash-cms-border); display: flex; flex-direction: column; gap: 12px; flex-shrink: 0;">
           <div>
-            <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Name</label>
+            <label style="font-size: 0.75rem; font-weight: 500; color: var(--ash-cms-text-muted); display: block; margin-bottom: 4px;">Name</label>
             <input type="text" name="layout[name]" value={Map.get(@layout, :name) || ""} required
-                   style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
+                   style="width: 100%; padding: 7px; border: 1px solid var(--ash-cms-border); border-radius: 6px; box-sizing: border-box;" />
           </div>
           <div>
-            <label style="font-size: 0.75rem; font-weight: 500; color: #64748b; display: block; margin-bottom: 4px;">Slug</label>
+            <label style="font-size: 0.75rem; font-weight: 500; color: var(--ash-cms-text-muted); display: block; margin-bottom: 4px;">Slug</label>
             <input type="text" name="layout[slug]" value={Map.get(@layout, :slug) || ""}
-                   style="width: 100%; padding: 7px; border: 1px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;" />
+                   style="width: 100%; padding: 7px; border: 1px solid var(--ash-cms-border); border-radius: 6px; box-sizing: border-box;" />
           </div>
           <div>
             <label style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem;">

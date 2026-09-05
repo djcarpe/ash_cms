@@ -36,10 +36,10 @@ defmodule AshCms.Live.LayoutListLive do
       </div>
 
       <%= for layout <- @layouts do %>
-        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px; background: white; display: flex; justify-content: space-between; align-items: center;">
+        <div style="border: 1px solid var(--ash-cms-border); border-radius: 8px; padding: 16px; margin-bottom: 12px; background: var(--ash-cms-bg); display: flex; justify-content: space-between; align-items: center;">
           <div>
             <h3 style="margin: 0 0 4px;"><%= layout.name %></h3>
-            <code style="font-size: 0.8125rem; color: #64748b;"><%= layout.slug %></code>
+            <code style="font-size: 0.8125rem; color: var(--ash-cms-text-muted);"><%= layout.slug %></code>
             <%= if layout.is_default do %>
               <span class="ash-cms-badge ash-cms-badge-green" style="margin-left: 8px;">Default</span>
             <% end %>

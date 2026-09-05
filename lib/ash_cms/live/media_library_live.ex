@@ -92,7 +92,7 @@ defmodule AshCms.Live.MediaLibraryLive do
     <div style="padding: 24px; max-width: 1200px; margin: 0 auto;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
         <h1>Media Library — <%= @site && @site.name %></h1>
-        <label style="padding: 8px 18px; background: #6366f1; color: white; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
+        <label style="padding: 8px 18px; background: var(--ash-cms-primary); color: var(--ash-cms-on-accent); border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
           <.live_file_input upload={@uploads.files} style="display: none;" />
           Upload Files
         </label>
@@ -100,7 +100,7 @@ defmodule AshCms.Live.MediaLibraryLive do
 
       <form phx-change="validate_upload" phx-submit="upload" style="margin-bottom: 24px;">
         <%= for entry <- @uploads.files.entries do %>
-          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px; border: 1px solid var(--ash-cms-border); border-radius: 6px; margin-bottom: 8px;">
             <span><%= entry.client_name %></span>
             <progress value={entry.progress} max="100" style="flex: 1;"><%= entry.progress %>%</progress>
             <%= if entry.done? do %>
@@ -110,7 +110,7 @@ defmodule AshCms.Live.MediaLibraryLive do
         <% end %>
 
         <%= if Enum.any?(@uploads.files.entries) do %>
-          <button type="submit" style="padding: 8px 16px; background: #22c55e; color: white; border: none; border-radius: 6px; cursor: pointer;">
+          <button type="submit" style="padding: 8px 16px; background: var(--ash-cms-success); color: var(--ash-cms-on-accent); border: none; border-radius: 6px; cursor: pointer;">
             Upload All
           </button>
         <% end %>
@@ -121,7 +121,7 @@ defmodule AshCms.Live.MediaLibraryLive do
           <button
             phx-click="set_filter"
             phx-value-filter={value}
-            style={"padding: 6px 14px; border-radius: 6px; border: 1px solid #e2e8f0; cursor: pointer; font-size: 0.875rem; background: #{if @filter == value, do: "#6366f1", else: "white"}; color: #{if @filter == value, do: "white", else: "#0f172a"};"}
+            style={"padding: 6px 14px; border-radius: 6px; border: 1px solid var(--ash-cms-border); cursor: pointer; font-size: 0.875rem; background: #{if @filter == value, do: "#6366f1", else: "white"}; color: #{if @filter == value, do: "white", else: "#0f172a"};"}
           ><%= label %></button>
         <% end %>
 
@@ -131,32 +131,32 @@ defmodule AshCms.Live.MediaLibraryLive do
           value={@search}
           phx-change="search"
           phx-debounce="300"
-          style="margin-left: auto; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.875rem;"
+          style="margin-left: auto; padding: 6px 12px; border: 1px solid var(--ash-cms-border); border-radius: 6px; font-size: 0.875rem;"
         />
       </div>
 
       <%= if Enum.empty?(@media) do %>
-        <div style="text-align: center; padding: 64px; color: #64748b;">
+        <div style="text-align: center; padding: 64px; color: var(--ash-cms-text-muted);">
           <p>No media yet. Upload some files to get started.</p>
         </div>
       <% else %>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px;">
           <%= for item <- @media do %>
-            <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; background: white;">
+            <div style="border: 1px solid var(--ash-cms-border); border-radius: 8px; overflow: hidden; background: var(--ash-cms-bg);">
               <%= if String.starts_with?(item.content_type || "", "image/") do %>
                 <img src={item.url} style="width: 100%; height: 110px; object-fit: cover; display: block;" alt={item.alt_text || item.name} />
               <% else %>
-                <div style="width: 100%; height: 110px; background: #f8fafc; display: flex; align-items: center; justify-content: center; font-size: 2rem;">
+                <div style="width: 100%; height: 110px; background: var(--ash-cms-surface); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
                   <%= media_emoji(item.content_type) %>
                 </div>
               <% end %>
               <div style="padding: 8px;">
                 <p style="margin: 0 0 4px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><%= item.name %></p>
-                <p style="margin: 0 0 8px; font-size: 0.7rem; color: #64748b;"><%= format_size(item.size) %></p>
+                <p style="margin: 0 0 8px; font-size: 0.7rem; color: var(--ash-cms-text-muted);"><%= format_size(item.size) %></p>
                 <div style="display: flex; gap: 4px;">
-                  <a href={item.url} target="_blank" style="font-size: 0.7rem; color: #6366f1;">View</a>
+                  <a href={item.url} target="_blank" style="font-size: 0.7rem; color: var(--ash-cms-primary);">View</a>
                   <button phx-click="delete_media" phx-value-id={item.id}
-                          style="font-size: 0.7rem; color: #ef4444; border: none; background: none; cursor: pointer; margin-left: auto;"
+                          style="font-size: 0.7rem; color: var(--ash-cms-danger); border: none; background: none; cursor: pointer; margin-left: auto;"
                           data-confirm={"Delete #{item.name}?"}>Delete</button>
                 </div>
               </div>

@@ -14,9 +14,16 @@
   --ash-cms-danger: #ef4444;
   --ash-cms-bg: #ffffff;
   --ash-cms-surface: #f8fafc;
+  --ash-cms-surface-alt: #f1f5f9;
   --ash-cms-border: #e2e8f0;
   --ash-cms-text: #0f172a;
   --ash-cms-text-muted: #64748b;
+  /* Text sitting on a filled accent (primary/danger/warning). Near-white in
+     both schemes, because the fill stays dark in both. */
+  --ash-cms-on-accent: #ffffff;
+  --ash-cms-badge-ok-bg: #dcfce7;
+  --ash-cms-badge-ok-text: #15803d;
+  --ash-cms-overlay: rgba(15, 23, 42, .45);
   --ash-cms-radius: 6px;
   --ash-cms-shadow: 0 1px 3px rgba(0,0,0,.08);
   --ash-cms-shadow-lg: 0 4px 16px rgba(0,0,0,.12);
@@ -149,17 +156,17 @@
   font-size: 1rem;
 }
 
-.ash-cms-btn-primary { background: var(--ash-cms-primary); color: white; }
+.ash-cms-btn-primary { background: var(--ash-cms-primary); color: var(--ash-cms-on-accent); }
 .ash-cms-btn-primary:hover { background: var(--ash-cms-primary-hover); }
-.ash-cms-btn-secondary { background: white; color: var(--ash-cms-primary); border: 2px solid var(--ash-cms-primary); }
+.ash-cms-btn-secondary { background: var(--ash-cms-bg); color: var(--ash-cms-primary); border: 2px solid var(--ash-cms-primary); }
 .ash-cms-btn-outline { background: transparent; color: var(--ash-cms-text); border: 2px solid var(--ash-cms-border); }
 .ash-cms-btn-ghost { background: transparent; color: var(--ash-cms-text-muted); }
 .ash-cms-btn-ghost:hover { background: var(--ash-cms-surface); }
 .ash-cms-btn-sm { padding: 8px 20px; font-size: 0.875rem; }
 .ash-cms-btn-md { padding: 12px 28px; }
 .ash-cms-btn-lg { padding: 16px 40px; font-size: 1.125rem; }
-.ash-cms-btn-warning { background: var(--ash-cms-warning); color: white; }
-.ash-cms-btn-danger { background: var(--ash-cms-danger); color: white; }
+.ash-cms-btn-warning { background: var(--ash-cms-warning); color: var(--ash-cms-on-accent); }
+.ash-cms-btn-danger { background: var(--ash-cms-danger); color: var(--ash-cms-on-accent); }
 .ash-cms-btn-xs { padding: 4px 10px; font-size: 0.75rem; border-radius: 4px; }
 
 /* Spacer Block */
@@ -168,7 +175,7 @@
 /* Preview Banner */
 .ash-cms-preview-banner {
   background: var(--ash-cms-warning);
-  color: white;
+  color: var(--ash-cms-on-accent);
   padding: 8px 16px;
   text-align: center;
   font-size: 0.875rem;
@@ -182,7 +189,7 @@
 }
 
 .ash-cms-preview-banner a {
-  color: white;
+  color: var(--ash-cms-on-accent);
   text-decoration: underline;
 }
 
@@ -212,7 +219,7 @@
   align-items: center;
   padding: 0 16px;
   gap: 12px;
-  background: white;
+  background: var(--ash-cms-bg);
   flex-shrink: 0;
   z-index: 100;
 }
@@ -288,7 +295,7 @@
 
 .ash-cms-mode-btn.active {
   background: var(--ash-cms-primary);
-  color: white;
+  color: var(--ash-cms-on-accent);
 }
 
 /* Editor body */
@@ -340,7 +347,7 @@
   font-size: 0.875rem;
 }
 
-.ash-cms-palette-item:hover { background: white; }
+.ash-cms-palette-item:hover { background: var(--ash-cms-bg); }
 .ash-cms-palette-item:active { background: var(--ash-cms-border); }
 
 .ash-cms-palette-icon { width: 18px; height: 18px; color: var(--ash-cms-secondary); }
@@ -352,7 +359,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 24px;
-  background: #f1f5f9;
+  background: var(--ash-cms-surface-alt);
 }
 
 .ash-cms-canvas-empty {
@@ -361,7 +368,7 @@
   color: var(--ash-cms-text-muted);
   border: 2px dashed var(--ash-cms-border);
   border-radius: var(--ash-cms-radius);
-  background: white;
+  background: var(--ash-cms-bg);
 }
 
 .ash-cms-block-wrapper {
@@ -369,7 +376,7 @@
   margin-bottom: 8px;
   border: 2px solid transparent;
   border-radius: var(--ash-cms-radius);
-  background: white;
+  background: var(--ash-cms-bg);
   transition: border-color 0.15s;
   cursor: pointer;
 }
@@ -385,7 +392,7 @@
   gap: 4px;
   padding: 4px 8px;
   background: var(--ash-cms-primary);
-  color: white;
+  color: var(--ash-cms-on-accent);
   border-radius: var(--ash-cms-radius) var(--ash-cms-radius) 0 0;
   font-size: 0.75rem;
 }
@@ -412,7 +419,7 @@
   padding: 2px 6px;
   border: none;
   background: rgba(255,255,255,0.15);
-  color: white;
+  color: var(--ash-cms-on-accent);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.75rem;
@@ -448,7 +455,7 @@
   width: var(--ash-cms-editor-props-width);
   border-left: 1px solid var(--ash-cms-border);
   overflow-y: auto;
-  background: white;
+  background: var(--ash-cms-bg);
   flex-shrink: 0;
 }
 
@@ -474,7 +481,7 @@
   border-radius: var(--ash-cms-radius);
   font-size: 0.875rem;
   outline: none;
-  background: white;
+  background: var(--ash-cms-bg);
   color: var(--ash-cms-text);
   box-sizing: border-box;
 }
@@ -505,7 +512,7 @@
   position: absolute;
   width: 16px; height: 16px;
   border-radius: 50%;
-  background: white;
+  background: var(--ash-cms-bg);
   top: 3px; left: 3px;
   transition: transform 0.2s;
   box-shadow: 0 1px 3px rgba(0,0,0,.2);
@@ -538,7 +545,7 @@
   padding: 3px 7px;
   border: 1px solid var(--ash-cms-border);
   border-radius: 3px;
-  background: white;
+  background: var(--ash-cms-bg);
   cursor: pointer;
   font-size: 0.8125rem;
 }
@@ -599,7 +606,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 16px;
-  background: white;
+  background: var(--ash-cms-bg);
 }
 
 /* ── Media Picker Modal ─────────────────────────────────────────────────────── */
@@ -615,7 +622,7 @@
 }
 
 .ash-cms-media-picker {
-  background: white;
+  background: var(--ash-cms-bg);
   border-radius: var(--ash-cms-radius);
   width: 900px;
   max-width: calc(100vw - 32px);
@@ -654,7 +661,7 @@
   font-size: 0.875rem;
   color: var(--ash-cms-text-muted);
 }
-.ash-cms-media-filter-tab.active { background: var(--ash-cms-primary); color: white; }
+.ash-cms-media-filter-tab.active { background: var(--ash-cms-primary); color: var(--ash-cms-on-accent); }
 
 .ash-cms-media-search {
   flex: 1;
@@ -711,7 +718,7 @@
   border: 1px solid var(--ash-cms-border);
   border-radius: var(--ash-cms-radius);
   overflow: hidden;
-  background: white;
+  background: var(--ash-cms-bg);
   box-shadow: var(--ash-cms-shadow);
 }
 
@@ -738,8 +745,8 @@
 .ash-cms-table-row:hover td { background: var(--ash-cms-surface); }
 
 .ash-cms-badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
-.ash-cms-badge-green { background: #dcfce7; color: #15803d; }
-.ash-cms-badge-gray { background: #f1f5f9; color: var(--ash-cms-text-muted); }
+.ash-cms-badge-green { background: var(--ash-cms-badge-ok-bg); color: var(--ash-cms-badge-ok-text); }
+.ash-cms-badge-gray { background: var(--ash-cms-surface-alt); color: var(--ash-cms-text-muted); }
 
 .ash-cms-page-title-cell a { color: var(--ash-cms-primary); text-decoration: none; font-weight: 500; }
 .ash-cms-page-title-cell a:hover { text-decoration: underline; }
@@ -748,3 +755,82 @@
 
 .ash-cms-breadcrumb-link { color: var(--ash-cms-text-muted); text-decoration: none; font-size: 0.875rem; }
 .ash-cms-breadcrumb-link:hover { color: var(--ash-cms-primary); }
+
+
+/* ── Dark scheme ───────────────────────────────────────────────────────────
+   The admin is embedded in whatever site installs it, so it follows the OS
+   preference by default and honours an explicit data-theme="dark" (or .dark)
+   on a host element when the page pins its own scheme. Only the palette is
+   redefined; every rule below is written against these variables. */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ash-cms-primary: #818cf8;
+    --ash-cms-primary-hover: #a5b4fc;
+    --ash-cms-secondary: #94a3b8;
+    --ash-cms-success: #4ade80;
+    --ash-cms-warning: #fbbf24;
+    --ash-cms-danger: #f87171;
+    --ash-cms-bg: #16181d;
+    --ash-cms-surface: #1d2027;
+    --ash-cms-surface-alt: #252932;
+    --ash-cms-border: #333844;
+    --ash-cms-text: #e7e9ef;
+    --ash-cms-text-muted: #9aa4b5;
+    --ash-cms-on-accent: #10121a;
+    --ash-cms-badge-ok-bg: #14532d;
+    --ash-cms-badge-ok-text: #86efac;
+    --ash-cms-shadow: 0 1px 3px rgba(0,0,0,.5);
+    --ash-cms-shadow-lg: 0 4px 16px rgba(0,0,0,.6);
+    --ash-cms-overlay: rgba(0, 0, 0, .6);
+  }
+}
+
+[data-theme="dark"],
+.dark {
+  --ash-cms-primary: #818cf8;
+  --ash-cms-primary-hover: #a5b4fc;
+  --ash-cms-secondary: #94a3b8;
+  --ash-cms-success: #4ade80;
+  --ash-cms-warning: #fbbf24;
+  --ash-cms-danger: #f87171;
+  --ash-cms-bg: #16181d;
+  --ash-cms-surface: #1d2027;
+  --ash-cms-surface-alt: #252932;
+  --ash-cms-border: #333844;
+  --ash-cms-text: #e7e9ef;
+  --ash-cms-text-muted: #9aa4b5;
+  --ash-cms-on-accent: #10121a;
+  --ash-cms-badge-ok-bg: #14532d;
+  --ash-cms-badge-ok-text: #86efac;
+  --ash-cms-shadow: 0 1px 3px rgba(0,0,0,.5);
+  --ash-cms-shadow-lg: 0 4px 16px rgba(0,0,0,.6);
+  --ash-cms-overlay: rgba(0, 0, 0, .6);
+}
+
+/* The admin chrome paints its own ground rather than inheriting the host
+   page's, so it is never dark text on a dark body or the reverse. */
+.ash-cms-admin,
+.ash-cms-editor {
+  background: var(--ash-cms-bg);
+  color: var(--ash-cms-text);
+  color-scheme: light dark;
+}
+
+/* Form controls inherit the palette too - a white input on a dark panel is
+   the most common way this goes wrong. */
+.ash-cms-admin input,
+.ash-cms-admin textarea,
+.ash-cms-admin select,
+.ash-cms-editor input,
+.ash-cms-editor textarea,
+.ash-cms-editor select {
+  background: var(--ash-cms-bg);
+  color: var(--ash-cms-text);
+  border-color: var(--ash-cms-border);
+}
+
+.ash-cms-admin input::placeholder,
+.ash-cms-editor input::placeholder {
+  color: var(--ash-cms-text-muted);
+}
